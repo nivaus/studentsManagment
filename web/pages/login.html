@@ -1,0 +1,36 @@
+<div class="loginContainer">
+    <form ng-submit="submit()">
+        <div class="main">
+            <div class="inset">
+
+                <!--<div class="alert" style="display: none">-->
+                    <!--<a class="close" onclick="$('.alert').hide()">ª</a>-->
+                    <!--<strong>Warning!</strong> Best check yo self, you're not looking too good.-->
+                <!--</div>-->
+
+                <div id="badPasswordAlert" class="alert alert-danger fade in" style="width: 93%" hidden="true">
+                    <a class="close" aria-label="close" onclick="$('#badPasswordAlert').hide()">&times;</a>
+                    <strong>Bad username or password!</strong>
+                </div>
+                <div>
+                    <span><label>Username</label></span>
+                    <span><input type="text" name="username" ng-model="username" class="textbox"
+                                 placeholder="Username or Email" required></span>
+                </div>
+                <div>
+                    <span><label>Password</label></span>
+                    <span>
+                        <input type="password" name="password" ng-model="password" class="password"
+                               placeholder="Password" required>
+                    </span>
+                </div>
+                <div class="sign">
+                    <div class="submit">
+                        <input type="submit" name="commit" value="LOGIN">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

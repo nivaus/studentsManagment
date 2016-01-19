@@ -1,0 +1,127 @@
+<div data-ng-init="init()">
+    <table st-table="displayedCollection" class="table table-striped">
+        <thead>
+        <tr>
+            <th st-sort="id">ID</th>
+            <th st-sort="firstName">First Name</th>
+            <th st-sort="lastName">Last Name</th>
+            <th st-sort="class">Class</th>
+            <th st-sort="grade">Grade</th>
+            <th ng-show="loggedInUser.isAdmin" st-sort="edit">Edit</th>
+            <th ng-show="loggedInUser.isAdmin" st-sort="delete">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="student in students">
+            <td>{{student.id}}</td>
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.studentClass}}</td>
+            <td>{{student.grade}}</td>
+            <td ng-show="loggedInUser.isAdmin">
+                <button type="button" data-toggle="modal" data-target="#updateStudentModal" class="btn btn-success" ng-click="$parent.updateSelectedStudent(student)">
+                    <i class="glyphicon glyphicon-pencil">
+                    </i>
+                </button>
+            </td>
+            <td ng-show="loggedInUser.isAdmin">
+                <button type="button" data-toggle="modal" data-target="#deleteModal" ng-click="$parent.updateSelectedStudent(student)" class="btn btn-danger">
+                    <i class="glyphicon glyphicon-remove">
+                    </i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#newStudentModal" ng-show="loggedInUser.isAdmin" ng-click="selectedStudent = {};">Add New Student</button>
+<!--Update Student Details Dialog-->
+<div id="updateStudentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit {{selectedStudent.firstName}}'s Details:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" class="form-control" ng-model="selectedStudent.firstName" id="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" class="form-control" ng-model="selectedStudent.lastName" id="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="studentClass">Class:</label>
+                    <input type="text" class="form-control" ng-model="selectedStudent.studentClass" id="studentClass">
+                </div>
+                <div class="form-group">
+                    <label for="grade">Grade:</label>
+                    <input type="number" min="0" max="100" class="form-control" ng-model="selectedStudent.grade" id="grade">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="updateUserDetailsInDB()">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--New Student Dialog-->
+<div id="newStudentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Student's Details:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="newStudentId">ID:</label>
+                    <input type="text" class="form-control" ng-model="selectedStudent.id" id="newStudentId">
+                </div>
+                <div class="form-group">
+                    <label for="newStudentFirstName">First Name:</label>
+                    <input type="text" class="form-control" ng-model="selectedStudent.firstName" id="newStudentFirstName">
+                </div>
+                <div class="form-group">
+                    <label for="newStudentLastName">Last Name:</label>
+                    <input type="text" class="form-control" ng-model="selectedStudent.lastName" id="newStudentLastName">
+                </div>
+                <div class="form-group">
+                    <label for="newStudentStudentClass">Class:</label>
+                    <input type="text" class="form-control" ng-model="selectedStudent.studentClass" id="newStudentStudentClass">
+                </div>
+                <div class="form-group">
+                    <label for="newStudentGrade">Grade:</label>
+                    <input type="number" min="0" max="100" class="form-control" ng-model="selectedStudent.grade" id="newStudentGrade">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="updateUserDetailsInDB()">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Delete Dialog-->
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Student</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete {{selectedStudent.firstName}} from the system?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="removeStudentFromDB()">Yes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
