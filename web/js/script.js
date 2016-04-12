@@ -7,13 +7,13 @@ var studentsManagementApp = angular.module('studentsManagementApp', ['smart-tabl
 studentsManagementApp.config(function ($routeProvider) {
     $routeProvider
 
-        // route for the home page
+        // route for the login page
         .when('/', {
             templateUrl: './pages/login.html',
             controller: 'loginController'
         })
 
-        // route for the about page
+        // route for the studentsList page
         .when('/studentsList', {
             templateUrl: './pages/studentsList.html',
             controller: 'studentsList'
