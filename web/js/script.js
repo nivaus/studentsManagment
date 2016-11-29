@@ -2,7 +2,7 @@
  * Created by oslander on 16/01/2016.
  */
 var studentsManagementApp = angular.module('studentsManagementApp', ['smart-table', 'ngRoute']);
-
+console.log('a1');
 // configure our routes
 studentsManagementApp.config(function ($routeProvider) {
     $routeProvider
