@@ -2,6 +2,8 @@
 * @version 2.1.6
 * @license MIT
 */
+
+console.log('a2');
 (function (ng, undefined){
     'use strict';
 
